@@ -25,7 +25,7 @@ var dealerHand;
 var message = document.getElementById('messages');
 // message.innerHTML = "<h1>this should be big and bold</h1><button>Im a button</button>";
 // message.innerHTML = "test";
-console.log(message);
+// console.log(message);
 function shuffleDeck(){
 	deck =[];
 	// fill our deck, in order (for now)
@@ -45,8 +45,8 @@ function shuffleDeck(){
 		for(i = 1; i <= 13; i++){
 			deck.push(i+suit);
 		}
-	}
-	console.log(deck);
+	};
+	// console.log(deck);
 
 	var numberOfTimesToShuffle = Math.floor(Math.random() * 500 +500);
 	//Shuffle the deck
@@ -59,27 +59,27 @@ function shuffleDeck(){
 		deck[card1] = temp;
 	}
 	//shuffled deck
-	console.log(deck);
+	// console.log(deck);
 	return deck;
 
-	}
+};
 
 function placeCard(card, who, slot){ // This function only effects the look of the card on the screen.
 	var currId = who + '-card-' + slot;
 	document.getElementById(currId).className = "card";
 	document.getElementById(currId).innerHTML = card;
-}
+};
 
 
 function bust(who){
 	if(who === "player"){
 		// player lost, dealer won.
-		document.getElementById('messages') = "You busted. Better luck next time";
+		document.getElementById('messages').innerHTML = "You busted. Better luck next time";
 	}else{
-		document.getElementById('messages') = "The dealer has busted.  You win!";
+		document.getElementById('messages').innerHTML = "The dealer has busted.  You win!";
 	}
-	console.log(bust);
-}
+	// console.log(bust);
+};
 
 function calculateTotal(hand, who){
 	var total = 0;
@@ -95,9 +95,12 @@ function calculateTotal(hand, who){
 	if(total > 21){
 		bust(who);
 	}
-console.log(calculateTotal);
+// console.log(calculateTotal);
+};	
 
 function deal(){
+	// Reset player and dealer hand to empty.
+	reset();
 	//Shuffled deck from function shuffleDeck
 	deck = shuffleDeck();
 	playerHand = [ deck[0], deck[2] ];
@@ -113,7 +116,7 @@ function deal(){
 	calculateTotal(playerHand, 'player');
 	calculateTotal(dealerHand, 'dealer');
 
-}
+};
 
 function hit(){
 	if(playerTotalCards === 2){ slot = "three";}
@@ -128,7 +131,7 @@ function hit(){
 	placeInDeck++;
 	calculateTotal(playerHand, 'player');
 
-}
+};
 
 function checkWin(){
 	//Get player total and dealer total and see who is closer to 21 without going over.
@@ -136,7 +139,7 @@ function checkWin(){
 	// Get player total
 	// get dealer totalwho is higher but less than 21
 	// set up a message
-}
+};
 
 function reset(){
 		// empty the deck
@@ -152,10 +155,17 @@ function reset(){
 		// reset the dealers hand array 
 	dealerHand = [];
 		// reset the message
+	document.getElementById('messages').innerHTML = "";
+		// clear the cards from the table
+	var cards = document.getElementsByClassName('card');
+	for (i=0; i<cards.length; i++){
+		cards[i].innerHTML = "";
+		cards[i].className = 'card empty';
+	};
+		
 
-
-		// reset all the cards (divs and the empty class)
-}
+	// reset all the cards (divs and the empty class)
+};
 
 function stand(){
 	var dealerHas = Number(document.getElementById('dealer-total').innerHTML);
@@ -175,14 +185,19 @@ function stand(){
 	}
 	// WE KNOW that the dealer has more than 17 at this point of the loop.
 	checkWin();
-}
+};
 
-function setName(){
-	var name = "Peter";
-	return name;
-}
+// function setName(){
+// 	var name = "Peter";
+// 	return name;
+// };
 
-var name = setName();
+// var playerName = setName();
+
+
+
+
+
 
 
 
