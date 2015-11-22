@@ -23,9 +23,9 @@ var dealerTotalCards = 2;
 var playerHand;
 var dealerHand;
 var message = document.getElementById('messages');
-message.innerHTML = "<h1>this should be big and bold</h1><button>Im a button</button>";
-message.innerHTML = "test";
-alert("something");
+// message.innerHTML = "<h1>this should be big and bold</h1><button>Im a button</button>";
+// message.innerHTML = "test";
+console.log(message);
 function shuffleDeck(){
 	deck =[];
 	// fill our deck, in order (for now)
@@ -48,7 +48,7 @@ function shuffleDeck(){
 	}
 	console.log(deck);
 
-	var numberOfTimesToShuffle = Math.floor( Math.random() * 500 +500);
+	var numberOfTimesToShuffle = Math.floor(Math.random() * 500 +500);
 	//Shuffle the deck
 	for(i = 0; i < numberOfTimesToShuffle; i++){
 		//pick 2 random cards from the deck. And switch them.
@@ -74,10 +74,11 @@ function placeCard(card, who, slot){ // This function only effects the look of t
 function bust(who){
 	if(who === "player"){
 		// player lost, dealer won.
-		message.innerHTML = "<h1>this should be big and bold</h1><button>Im a button</button>";
+		document.getElementById('messages') = "You busted. Better luck next time";
 	}else{
-		message.innerHTML = "The dealer has busted.  You win.";
+		document.getElementById('messages') = "The dealer has busted.  You win!";
 	}
+	console.log(bust);
 }
 
 function calculateTotal(hand, who){
@@ -94,8 +95,7 @@ function calculateTotal(hand, who){
 	if(total > 21){
 		bust(who);
 	}
-
-}
+console.log(calculateTotal);
 
 function deal(){
 	//Shuffled deck from function shuffleDeck
@@ -108,7 +108,7 @@ function deal(){
 	placeCard(playerHand[0], 'player', 'one');
 	placeCard(dealerHand[0], 'dealer', 'one');
 	placeCard(playerHand[1], 'player', 'two');
-	placeCard(dealerHand[1], 'player', 'two');
+	placeCard(dealerHand[1], 'dealer', 'two');
 
 	calculateTotal(playerHand, 'player');
 	calculateTotal(dealerHand, 'dealer');
@@ -183,25 +183,6 @@ function setName(){
 }
 
 var name = setName();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
